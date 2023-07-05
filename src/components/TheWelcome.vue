@@ -1,14 +1,61 @@
-<script setup lang="ts">
+<script  lang="ts">
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+
+export default {
+  components: {
+    WelcomeItem,
+    DocumentationIcon,
+    ToolingIcon,
+    EcosystemIcon,
+    CommunityIcon,
+    SupportIcon
+  },
+  data() {
+    return {
+      noteList: [],
+      note: {
+        title: null,
+        text: null
+      }
+    }
+  },
+  methods: {
+    addNote() {
+      this.noteList.push(this.note);
+      this.note = {
+        title: null,
+        text: null
+      };
+    }
+  }
+}
+
 </script>
 
 <template>
-  <WelcomeItem>
+  <div>
+    <tr>
+      <td>Title : </td>
+      <td><input v-model="note.title"></td>
+    </tr>
+    <tr>
+      <td>Text : </td>
+      <td><input v-model="note.text"></td>
+    </tr>
+    <tr>
+      <td><button @click="addNote()">Add note</button></td>
+    </tr>
+  </div>
+  <ul v-for="note in noteList">
+    <li>{{ note.title }}</li>
+    <li>{{ note.text }}</li>
+  </ul>
+  <!-- <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
     </template>
@@ -82,5 +129,5 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  </WelcomeItem> -->
 </template>
