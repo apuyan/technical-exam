@@ -1,8 +1,8 @@
-# To run front end
-## Go to base project, open cmd and run this command : npm run dev
+## To run front end
+Go to base project, open cmd and run this command : npm run dev
 
-# To run backend
-## Go to base project and then go to backend folder, open cmd and run this command : php artisan serve
+## To run backend
+Go to base project and then go to backend folder, open cmd and run this command : php artisan serve
 
 
 # LWS Technical Exam
