@@ -63,6 +63,23 @@ class TodoControllerTest extends TestCase
         assertEquals(true,$todoList[0]['isDone']);
     }
 
+    public function test_simple_adding_todo_three_times_and_then_check_if_fetched_data_is_in_reversed_order() {
+        $this->deleteTodoRepository();
+        $newTodo = [
+            "entry" => "jogging"        
+        ];
+        $this->post('/api/addTodo',$newTodo);
+        $this->post('/api/addTodo',$newTodo);
+        $this->post('/api/addTodo',$newTodo);
+
+        $todoList = $this->get('/api/getTodos')->collect();
+        for($i = 0;$i < count($todoList);$i++) {
+            $expected = count($todoList) - $i;
+            $actual = $todoList[$i]['todoId'];
+            assertEquals($expected, $actual);
+        }
+    }
+
     private function deleteTodoRepository() {
         if(file_exists("todo_repository.txt")) {
             unlink("todo_repository.txt");

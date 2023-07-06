@@ -18,11 +18,12 @@ class NoteController extends Controller implements NoteService
     {
         $note = new Note();
         $newNote = $note->mapJson($request);
-        self::$noteList [] = [
+
+        array_unshift(self::$noteList,[
             "noteId" => count(self::$noteList) + 1,
             "title" => $newNote->getTitle(),
             "text" => $newNote->getText()
-        ];
+        ]);
 
         $this->updateNoteListRepository();
         return $request;

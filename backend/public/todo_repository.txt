@@ -1,1 +1,0 @@
-[{"todoId":3,"entry":"swimming","isDone":true},{"todoId":2,"entry":"jogging","isDone":true}]

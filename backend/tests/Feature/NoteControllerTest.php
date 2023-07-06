@@ -69,6 +69,24 @@ class NoteControllerTest extends TestCase
         assertEquals("test-text-updated",$noteList[0]['text']);
     }
 
+    public function test_simple_adding_note_three_times_and_then_check_if_fetched_data_is_in_reversed_order() {
+        $this->deleteNoteRepository();
+        $newNote = [
+            "title" => "test-title",
+            "text" => "test-text"      
+        ];
+        $this->post('/api/addNote',$newNote);
+        $this->post('/api/addNote',$newNote);
+        $this->post('/api/addNote',$newNote);
+
+        $noteList = $this->get('/api/getNotes')->collect();
+        for($i = 0;$i < count($noteList);$i++) {
+            $expected = count($noteList) - $i;
+            $actual = $noteList[$i]['noteId'];
+            assertEquals($expected, $actual);
+        }
+    }
+
     private function deleteNoteRepository() {
         if(file_exists("note_repository.txt")) {
             unlink("note_repository.txt");

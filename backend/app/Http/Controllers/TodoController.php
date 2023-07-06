@@ -17,11 +17,11 @@ class TodoController extends Controller implements TodoService
     {
         $todo = new Todo();
         $newTodo = $todo->mapJson($request);
-        self::$todoList [] = [
+        array_unshift(self::$todoList,[
             "todoId" => count(self::$todoList) + 1,
             "entry" => $newTodo->getEntry(),
             "isDone" => $newTodo->isDone()
-        ];
+        ]);
 
         $this->updateTodoListRepository();
         return $request;
@@ -66,6 +66,7 @@ class TodoController extends Controller implements TodoService
         }
         return $jsonTodo;
     }
+
 
     private function updateTodoListRepository() {
         file_put_contents('todo_repository.txt', json_encode(self::$todoList));
