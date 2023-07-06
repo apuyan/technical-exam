@@ -23,7 +23,7 @@ class Note {
         return $this->text;
     }
 
-    function mapJson(Request $json) : Note {
+    static function mapJson(Request $json) : Note {
         $note = new Note();
         if(isset($json->noteId)) {
             $note->noteId = $json->noteId;
