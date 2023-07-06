@@ -25,6 +25,7 @@ class NoteController extends Controller implements NoteService
         ];
 
         $this->updateNoteListRepository();
+        return $request;
     }
 
     public function deleteNote(Request $request)
