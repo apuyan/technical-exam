@@ -106,38 +106,26 @@ export default {
   </div>
   <div class="card" style="display: inline-block; width:30vw;margin-top:30px;">
     <span style="padding:5px">My Notes</span>
-    <ul v-for="note in noteList">
-      <div class="card">
-        <div class="container">
-          <div class="row mb-2"> 
-            <div class="col-md-12">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">                               
-                  <h3 class="card-title d-flex">
-                    <template v-if="note.toUpdate">
-                      <input placeholder="Update title" v-model="noteUpdate.title">
-                    </template>
-                    <template v-else>
-                      <b>{{note.title}}</b> 
-                    </template>
-                    <a @click="prepareUpdate(note)" class="btn btn-sm btn-danger ml-3" href="#">{{ note.toUpdate ? "Cancel" : "Edit" }}</a>
-                    <a v-if="note.toUpdate" @click="updateNote(note)" class="btn btn-sm btn-danger ml-3" href="#" style="margin-left: 5px;">{{ "Update" }}</a>
-                    <a @click="deleteNote(note)" class="btn btn-sm btn-danger ml-3" href="#" style="margin-left: 5px;">{{ "Delete" }}</a>
-                  </h3>
-                  <p class="card-text">
-                    <template v-if="note.toUpdate">
-                      <input placeholder="Update text" v-model="noteUpdate.text">
-                    </template>
-                    <template v-else>
-                      <b>{{note.text}}</b> 
-                    </template>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <ul v-for="note in noteList" style="margin-bottom:10px;">
+        <h3 class="card-title d-flex">
+          <template v-if="note.toUpdate">
+            <input placeholder="Update title" v-model="noteUpdate.title">
+          </template>
+          <template v-else>
+            <b>{{note.title}}</b> 
+          </template>
+          <a @click="prepareUpdate(note)" class="btn btn-sm btn-danger ml-3" href="#">{{ note.toUpdate ? "Cancel" : "Edit" }}</a>
+          <a v-if="note.toUpdate" @click="updateNote(note)" class="btn btn-sm btn-danger ml-3" href="#" style="margin-left: 5px;">{{ "Update" }}</a>
+          <a @click="deleteNote(note)" class="btn btn-sm btn-danger ml-3" href="#" style="margin-left: 5px;">{{ "Delete" }}</a>
+        </h3>
+        <p class="card-text">
+          <template v-if="note.toUpdate">
+            <input placeholder="Update text" v-model="noteUpdate.text">
+          </template>
+          <template v-else>
+            <b>{{note.text}}</b> 
+          </template>
+        </p>
     </ul>
   </div>
   
